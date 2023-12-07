@@ -56,6 +56,9 @@
     "volumeMounts": {
       "type": "array", "default": []
     },
+    "imagePullSecrets": {
+      "type": "array", "default": []
+    },
     "volumes": {
       "type": "array", "default": []
     },
@@ -109,6 +112,7 @@
         "extraVolumes": {"$ref": "#/definitions/volumes", "title": "extra volumes for registry"},
         "kafka": {"$ref": "#/definitions/persistence/kafka"},
         "sql": {"$ref": "#/definitions/persistence/sql"},
+        "imagePullSecrets": {"$ref": "#/definitions/imagePullSecrets"},
         "ingress": {"$ref": "#/definitions/ingress"},
         "extraLabels": {"$ref": "#/definitions/labels", "title": "deployment and pod resources labels for registry"}
       }
@@ -119,6 +123,7 @@
       "properties": {
         "enabled": {"$ref": "#/definitions/isEnabled"},
         "image": {"$ref": "#/definitions/dockerImage"},
+        "imagePullSecrets": {"$ref": "#/definitions/imagePullSecrets"},
         "nodeSelector": {"type": "object", "title": "node selector for registry content sync"},
         "initContainers": {"$ref": "#/definitions/initContainers", "title": "init containers for registry content sync"},
         "resources": {"$ref": "#/definitions/podResources"},

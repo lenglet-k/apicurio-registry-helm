@@ -56,6 +56,15 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].image
           value: myregistry/myrepo/myimage:fakeTag
+  - it: set imagePullSecrets
+    set:
+      registry:
+        imagePullSecrets:
+          - name: mysecret
+    asserts:
+      - equal:
+          path: spec.template.spec.imagePullSecrets[0].name
+          value: mysecret
   - it: no selector
     asserts:
       - notExists:
