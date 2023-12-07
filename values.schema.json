@@ -7,13 +7,17 @@
     "isEnabled": {
       "type": "boolean", "title": "should be installed" , "default": true
     },
+
     "dockerImage": {
       "type": "object", "title": "docker image settings",
       "required": ["registry", "repository", "tag"],
       "properties": {
         "registry": {"type": "string", "default": "quay.io"},
         "repository": {"type": "string"},
-        "tag": {"type": "string"}
+        "tag": {"type": "string"},
+        "persistenceSuffix": {
+          "type": "boolean", "title": "Use suffix (sql, kafkasql, mem) for docker images" , "default": true
+        }
       }
     },
     "podResources": {
@@ -67,7 +71,7 @@
         "host": {"type": "string", "default": "apicurio.local", "title": "hostname"},
         "path": {"type": "string", "default": "/", "title": "ingress path"},
         "tls": {"type": "boolean", "default": false, "title": "enable TLS for ingress host",
-            "description": "if TLS enabled the certificate is retrieved from secret with the same name as ingress host"},
+        "description": "if TLS enabled the certificate is retrieved from secret with the same name as ingress host"},
         "annotations": {"type": "object", "default": {}, "title": "ingress resource annotations"},
         "labels": {"type": "object", "default": {}, "title": "ingress resource labels"}
       }

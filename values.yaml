@@ -1,6 +1,5 @@
 registry:
   enabled: true
-
   ## uncomment and adjust for kafka persistence
   # kafka:
   #   bootstrapServers: kafka1:9092,kafka2:9092
@@ -15,6 +14,9 @@ registry:
     registry: "quay.io"
     repository: "apicurio/apicurio-registry"
     tag: "2.4.14.Final"
+    # set persistenceSuffix to false for use a custom image
+    # the default is true, it is used by helpers.tpl to define the image to use
+    persistenceSuffix: true
   # optional node selector
   nodeSelector: {}
   # optional init containers

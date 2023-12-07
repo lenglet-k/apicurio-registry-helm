@@ -16,6 +16,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{- define "apicurio-registry.image" -}}
 {{- $sfx := "" -}}
+{{- if .image.persistenceSuffix -}}
 {{- if hasKey . "sql" -}}
 {{- $sfx = "sql" -}}
 {{- else if hasKey . "kafka" -}}
@@ -24,4 +25,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- $sfx = "mem" -}}
 {{- end -}}
 {{ printf "%s/%s-%s:%s" .image.registry .image.repository $sfx .image.tag }}
+{{- else -}}
+{{ printf "%s/%s:%s" .image.registry .image.repository .image.tag }}
+{{- end -}}
 {{- end -}}
